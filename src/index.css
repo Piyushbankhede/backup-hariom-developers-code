@@ -1,0 +1,76 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply font-sans text-gray-800 bg-white antialiased;
+  }
+  .dark body {
+    @apply text-gray-200 bg-slate-950;
+  }
+  h1, h2, h3, h4 {
+    @apply font-serif tracking-tight;
+  }
+  ::selection {
+    @apply bg-accent/30 text-primary;
+  }
+}
+
+@layer components {
+  .container-lux {
+    @apply mx-auto max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2;
+  }
+  .btn-primary {
+    @apply btn bg-primary text-white hover:bg-primary-700 shadow-lg shadow-primary/20 hover:shadow-primary/40 focus:ring-primary;
+  }
+  .btn-accent {
+    @apply btn bg-accent text-gray-900 hover:bg-accent-600 hover:text-white shadow-lg shadow-accent/30 focus:ring-accent;
+  }
+  .btn-outline {
+    @apply btn border border-white/40 text-white hover:bg-white hover:text-primary backdrop-blur-sm;
+  }
+  .btn-ghost {
+    @apply btn border border-primary/20 text-primary hover:bg-primary hover:text-white;
+  }
+  .glass {
+    @apply bg-white/70 dark:bg-slate-900/60 backdrop-blur-xl border border-white/40 dark:border-white/10;
+  }
+  .glass-card {
+    @apply rounded-2xl bg-white/80 dark:bg-slate-900/60 backdrop-blur-xl border border-white/60 dark:border-white/10 shadow-xl shadow-primary/5;
+  }
+  .input-lux {
+    @apply w-full rounded-xl border border-gray-300 dark:border-slate-700 bg-white dark:bg-slate-900 px-4 py-3 text-sm text-gray-900 dark:text-gray-100 placeholder-gray-400 focus:border-primary focus:ring-2 focus:ring-primary/30 outline-none transition;
+  }
+  .label-lux {
+    @apply mb-1.5 block text-xs font-semibold uppercase tracking-wider text-gray-600 dark:text-gray-400;
+  }
+  .section-pad {
+    @apply py-20 lg:py-28;
+  }
+  .badge {
+    @apply inline-flex items-center gap-1 rounded-full px-3 py-1 text-xs font-semibold;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
