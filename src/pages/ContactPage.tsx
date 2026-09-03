@@ -1,6 +1,6 @@
 import { useState, type FormEvent } from 'react';
 import { motion } from 'framer-motion';
-import { MapPin, Phone, Mail, MessageCircle, Navigation, CheckCircle2, Loader2 } from 'lucide-react';
+import { MapPin, Phone, Mail, MessageCircle, Navigation, CheckCircle2, Loader2, AlertCircle } from 'lucide-react';
 import PageHero from '@/components/PageHero';
 import { company, telLink, whatsappLink } from '@/data/company';
 import { sendEnquiry } from '@/lib/email';
@@ -12,28 +12,44 @@ export default function ContactPage() {
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const fd = new FormData(e.currentTarget);
+    const form = e.currentTarget;
+    const fd = new FormData(form);
     const data = {
       name: String(fd.get('name') || ''),
-      email: String(fd.get('email') || ''),
       phone: String(fd.get('phone') || ''),
+      email: String(fd.get('email') || ''),
       propertyInterest: String(fd.get('propertyInterest') || ''),
       message: String(fd.get('message') || ''),
       honeypot: String(fd.get('website') || ''),
     };
+
     const errs: Record<string, string> = {};
-    if (!data.name.trim()) errs.name = 'Please enter your name';
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) errs.email = 'Enter a valid email';
-    if (!/^\+?[0-9]{10,13}$/.test(data.phone.replace(/[^0-9+]/g, ''))) errs.phone = 'Enter a valid phone';
+    if (!data.name.trim()) {
+      errs.name = 'Please enter your name';
+    }
+    if (!data.phone.trim()) {
+      errs.phone = 'Please enter your phone number';
+    } else if (!/^\+?[0-9]{10,13}$/.test(data.phone.replace(/[^0-9+]/g, ''))) {
+      errs.phone = 'Enter a valid 10-digit phone number';
+    }
+    if (!data.email.trim()) {
+      errs.email = 'Please enter your email';
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) {
+      errs.email = 'Enter a valid email address';
+    }
+    if (!data.message.trim()) {
+      errs.message = 'Please enter your message';
+    }
+
     setErrors(errs);
-    if (Object.keys(errs).length) return;
+    if (Object.keys(errs).length > 0) return;
 
     setStatus('loading');
     try {
       await sendEnquiry(data);
       setStatus('success');
-      (e.target as HTMLFormElement).reset();
-      setTimeout(() => setStatus('idle'), 4000);
+      form.reset();
+      setTimeout(() => setStatus('idle'), 6000);
     } catch {
       setStatus('error');
     }
@@ -70,7 +86,7 @@ export default function ContactPage() {
             <div className="glass-card p-6">
               <h3 className="font-serif text-lg font-bold text-gray-900 dark:text-white">Send us a message</h3>
               <p className="mt-1 text-sm text-gray-500">Fill in the form and our team will get back to you within 24 hours.</p>
-              <form onSubmit={handleSubmit} className="mt-5 space-y-4">
+              <form onSubmit={handleSubmit} className="mt-5 space-y-4" noValidate>
                 <input
                   type="text"
                   name="website"
@@ -81,49 +97,110 @@ export default function ContactPage() {
                 />
                 <div className="grid sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="label-lux">Name</label>
-                    <input name="name" className="input-lux" placeholder="Your name" />
+                    <label className="label-lux">
+                      Name <span className="text-red-500">*</span>
+                    </label>
+                    <input
+                      name="name"
+                      className={`input-lux ${errors.name ? 'border-red-500 focus:border-red-500' : ''}`}
+                      placeholder="Your name"
+                      required
+                    />
                     {errors.name && <p className="mt-1 text-xs text-red-500">{errors.name}</p>}
                   </div>
                   <div>
-                    <label className="label-lux">Phone</label>
-                    <input name="phone" className="input-lux" placeholder="+91" />
+                    <label className="label-lux">
+                      Phone <span className="text-red-500">*</span>
+                    </label>
+                    <input
+                      name="phone"
+                      type="tel"
+                      className={`input-lux ${errors.phone ? 'border-red-500 focus:border-red-500' : ''}`}
+                      placeholder="+91 8766428738"
+                      required
+                    />
                     {errors.phone && <p className="mt-1 text-xs text-red-500">{errors.phone}</p>}
                   </div>
                 </div>
                 <div className="grid sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="label-lux">Email</label>
-                    <input name="email" type="email" className="input-lux" placeholder="you@email.com" />
+                    <label className="label-lux">
+                      Email <span className="text-red-500">*</span>
+                    </label>
+                    <input
+                      name="email"
+                      type="email"
+                      className={`input-lux ${errors.email ? 'border-red-500 focus:border-red-500' : ''}`}
+                      placeholder="you@email.com"
+                      required
+                    />
                     {errors.email && <p className="mt-1 text-xs text-red-500">{errors.email}</p>}
                   </div>
                   <div>
                     <label className="label-lux">Property Interest</label>
                     <select name="propertyInterest" defaultValue="" className="input-lux">
                       <option value="" disabled>Select…</option>
-                      <option>Residential</option>
-                      <option>Commercial</option>
-                      <option>Villa</option>
-                      <option>Apartment</option>
-                      <option>Plot</option>
-                      <option>Investment</option>
+                      <option value="Residential">Residential</option>
+                      <option value="Commercial">Commercial</option>
+                      <option value="Villa">Villa</option>
+                      <option value="Apartment">Apartment</option>
+                      <option value="Plot">Plot</option>
+                      <option value="Investment">Investment</option>
                     </select>
                   </div>
                 </div>
                 <div>
-                  <label className="label-lux">Message</label>
-                  <textarea name="message" rows={4} className="input-lux" placeholder="Tell us what you're looking for…" />
+                  <label className="label-lux">
+                    Message <span className="text-red-500">*</span>
+                  </label>
+                  <textarea
+                    name="message"
+                    rows={4}
+                    className={`input-lux ${errors.message ? 'border-red-500 focus:border-red-500' : ''}`}
+                    placeholder="Tell us what you're looking for…"
+                    required
+                  />
+                  {errors.message && <p className="mt-1 text-xs text-red-500">{errors.message}</p>}
                 </div>
 
                 {status === 'success' && (
-                  <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex items-center gap-2 rounded-xl bg-success/10 p-3 text-success">
-                    <CheckCircle2 className="h-5 w-5 shrink-0" /> Thank you! Your enquiry has been sent successfully.
+                  <motion.div
+                    initial={{ opacity: 0, y: 5 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="flex items-start gap-2.5 rounded-xl bg-emerald-500/10 border border-emerald-500/20 p-3.5 text-emerald-700 dark:text-emerald-400"
+                  >
+                    <CheckCircle2 className="h-5 w-5 shrink-0 mt-0.5" />
+                    <span className="text-sm font-medium leading-relaxed">
+                      Thank you! Your enquiry has been sent successfully. Our team will contact you soon.
+                    </span>
                   </motion.div>
                 )}
-                {status === 'error' && <p className="text-sm text-red-500">Unable to send enquiry. Please try again.</p>}
 
-                <button type="submit" disabled={status === 'loading'} className="btn-accent w-full sm:w-auto disabled:opacity-60">
-                  {status === 'loading' ? <><Loader2 className="h-4 w-4 animate-spin" /> Sending…</> : 'Submit'}
+                {status === 'error' && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 5 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="flex items-start gap-2.5 rounded-xl bg-red-500/10 border border-red-500/20 p-3.5 text-red-600 dark:text-red-400"
+                  >
+                    <AlertCircle className="h-5 w-5 shrink-0 mt-0.5" />
+                    <span className="text-sm font-medium leading-relaxed">
+                      Failed to send enquiry. Please try again or call us at {company.phone}.
+                    </span>
+                  </motion.div>
+                )}
+
+                <button
+                  type="submit"
+                  disabled={status === 'loading'}
+                  className="btn-accent w-full sm:w-auto disabled:opacity-60 disabled:cursor-not-allowed"
+                >
+                  {status === 'loading' ? (
+                    <>
+                      <Loader2 className="h-4 w-4 animate-spin" /> Sending…
+                    </>
+                  ) : (
+                    'Submit'
+                  )}
                 </button>
               </form>
             </div>

@@ -6,7 +6,7 @@ import { company, telLink, whatsappLink } from '@/data/company';
 import { sendEnquiry } from '@/lib/email';
 
 const projectOptions = [
-  'Hariom Green Valley',
+  'Silver Star',
   'Hariom Residency',
   'Hariom Elite Villas',
   'Hariom Commercial Hub',

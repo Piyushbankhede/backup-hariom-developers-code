@@ -43,6 +43,7 @@ export default function Navbar() {
               <NavLink
                 key={l.path}
                 to={l.path}
+                end={l.path === '/'}
                 className={({ isActive }) =>
                   `relative rounded-full px-4 py-2 text-sm font-medium transition-colors ${
                     isActive
@@ -122,6 +123,7 @@ export default function Navbar() {
                   <NavLink
                     key={l.path}
                     to={l.path}
+                    end={l.path === '/'}
                     onClick={() => setOpen(false)}
                     className={({ isActive }) =>
                       `rounded-xl px-4 py-3 text-sm font-medium transition ${

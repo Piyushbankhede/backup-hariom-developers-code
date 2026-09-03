@@ -35,7 +35,7 @@ export const timeline = [
   { year: '2015', title: 'Expansion into commercial', desc: 'Launched Hariom Commercial Hub in Ramdaspeth CBD.' },
   { year: '2019', title: '500+ homes delivered', desc: 'Crossed the milestone of 500 happy families.' },
   { year: '2023', title: 'Luxury villa segment', desc: 'Entered ultra-luxury with Hariom Elite Villas.' },
-  { year: '2026', title: 'Green Valley underway', desc: 'Our largest villa community, 84 homes, nearing completion.' },
+  { year: '2026', title: 'Silver Star underway', desc: 'Our largest community, 84 homes, nearing completion.' },
 ];
 
 export const achievements = [

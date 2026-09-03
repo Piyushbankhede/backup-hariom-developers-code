@@ -1,4 +1,4 @@
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
 import {
@@ -14,16 +14,31 @@ import EMICalculator from '@/components/EMICalculator';
 
 export default function ProjectDetailPage() {
   const { id } = useParams();
+  const navigate = useNavigate();
   const project = projects.find((p) => p.id === id);
   const { openEnquiry } = useEnquiry();
   const [activeImg, setActiveImg] = useState(0);
+
+  const handleBack = () => {
+    if (window.history.state && window.history.state.idx > 0) {
+      navigate(-1);
+    } else {
+      navigate('/projects');
+    }
+  };
 
   if (!project) {
     return (
       <div className="min-h-screen grid place-items-center pt-20">
         <div className="text-center">
           <p className="text-gray-500">Project not found.</p>
-          <Link to="/projects" className="btn-ghost mt-4">Back to Projects</Link>
+          <button
+            type="button"
+            onClick={handleBack}
+            className="btn-ghost mt-4 inline-flex items-center gap-2 cursor-pointer"
+          >
+            <ArrowLeft className="h-4 w-4" /> Back to Projects
+          </button>
         </div>
       </div>
     );
@@ -42,10 +57,16 @@ export default function ProjectDetailPage() {
             transition={{ duration: 1.4 }}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/60 to-slate-950/30" />
-          <div className="absolute inset-x-0 bottom-0 container-lux pb-10">
-            <Link to="/projects" className="inline-flex items-center gap-1 text-sm text-white/70 hover:text-white mb-3">
-              <ArrowLeft className="h-4 w-4" /> Back to Projects
-            </Link>
+          <div className="absolute inset-x-0 bottom-0 container-lux pb-10 z-10">
+            <button
+              type="button"
+              onClick={handleBack}
+              className="inline-flex items-center gap-2 text-sm font-medium text-white/80 hover:text-white transition-colors cursor-pointer group mb-3 py-1 px-2 -ml-2 rounded-lg hover:bg-white/10"
+              aria-label="Back to Projects"
+            >
+              <ArrowLeft className="h-4 w-4 transition-transform duration-200 group-hover:-translate-x-1" />
+              <span>Back to Projects</span>
+            </button>
             <div className="flex flex-wrap gap-2 mb-3">
               <span className="badge bg-accent text-gray-900">{project.status}</span>
             </div>

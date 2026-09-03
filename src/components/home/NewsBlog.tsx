@@ -14,10 +14,10 @@ const news = [
   },
   {
     id: 'n2',
-    title: 'Hariom Green Valley Reaches 65% Construction Milestone',
-    excerpt: 'Our flagship villa community in Besa is on track for December 2026 handover. Bookings open for last 12 units.',
+    title: 'Silver Star Reaches 65% Construction Milestone',
+    excerpt: 'Our flagship community in Nagalwadi is on track for December 2026 handover. Bookings open for last 12 units.',
     date: '28 Jul 2026',
-    image: 'https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=700',
+    image: '/silver-star.jpg',
     tag: 'Project Update',
   },
   {

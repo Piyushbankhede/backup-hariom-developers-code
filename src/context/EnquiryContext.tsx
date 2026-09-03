@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, type ReactNode } from 'react';
+import { createContext, useContext, useState, useEffect, type ReactNode } from 'react';
 
 interface EnquiryState {
   open: boolean;
@@ -18,6 +18,13 @@ export function EnquiryProvider({ children }: { children: ReactNode }) {
     setOpen(true);
   };
   const closeEnquiry = () => setOpen(false);
+
+  // Close popup on route change so it doesn't block navbar links
+  useEffect(() => {
+    const handleRouteChange = () => setOpen(false);
+    window.addEventListener('routechange', handleRouteChange);
+    return () => window.removeEventListener('routechange', handleRouteChange);
+  }, []);
 
   return (
     <EnquiryContext.Provider value={{ open, triggerLabel, openEnquiry, closeEnquiry }}>

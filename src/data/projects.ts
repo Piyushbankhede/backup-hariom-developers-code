@@ -21,24 +21,23 @@ export interface Project {
 
 export const projects: Project[] = [
   {
-    id: 'hariom-green-valley',
-    name: 'Hariom Green Valley',
+    id: 'silver-star',
+    name: 'Silver Star',
     status: 'Ongoing',
-    location: 'Besa, Nagpur',
+    location: 'Nagalwadi, Nagpur',
     progress: 65,
     deliveryDate: 'Dec 2026',
-    image:
-      'https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=900',
+    image: '/silver-star.jpg',
     gallery: [
-      'https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=1200',
+      '/silver-star.jpg',
       'https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=1200',
       'https://images.pexels.com/photos/1080721/pexels-photo-1080721.jpeg?auto=compress&cs=tinysrgb&w=1200',
       'https://images.pexels.com/photos/2462015/pexels-photo-2462015.jpeg?auto=compress&cs=tinysrgb&w=1200',
     ],
     overview:
-      'A gated villa community of 84 luxury homes spread across 12 acres, with private gardens, a central clubhouse, and a resort-style swimming pool.',
+      'Silver Star offers a thoughtful mix of modern amenities, green landscapes and peaceful surroundings. With close connectivity to educational hubs, technology parks, industrial zones and key transport routes, it is ideal for both residential comfort and long-term investment.',
     highlights: [
-      '84 premium villas across 12 acres',
+      '84 premium homes across 12 acres',
       'Clubhouse with spa & gym',
       'Resort-style swimming pool',
       'Landscaped central park',
@@ -47,23 +46,23 @@ export const projects: Project[] = [
     ],
     amenities: ['Swimming Pool', 'Clubhouse', 'Gym', 'Spa', 'Jogging Track', 'Tennis Court', 'Kids Play Area', 'Amphitheatre', 'EV Charging'],
     floorPlans: [
-      { name: 'Villa Type A — 3 BHK', area: '1,900 sq.ft', image: 'https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=900' },
-      { name: 'Villa Type B — 4 BHK', area: '2,400 sq.ft', image: 'https://images.pexels.com/photos/1080721/pexels-photo-1080721.jpeg?auto=compress&cs=tinysrgb&w=900' },
-      { name: 'Villa Type C — 5 BHK', area: '3,600 sq.ft', image: 'https://images.pexels.com/photos/1438832/pexels-photo-1438832.jpeg?auto=compress&cs=tinysrgb&w=900' },
+      { name: 'Type A — 3 BHK', area: '1,900 sq.ft', image: 'https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=900' },
+      { name: 'Type B — 4 BHK', area: '2,400 sq.ft', image: 'https://images.pexels.com/photos/1080721/pexels-photo-1080721.jpeg?auto=compress&cs=tinysrgb&w=900' },
+      { name: 'Type C — 5 BHK', area: '3,600 sq.ft', image: 'https://images.pexels.com/photos/1438832/pexels-photo-1438832.jpeg?auto=compress&cs=tinysrgb&w=900' },
     ],
     locationAdvantages: [
       '5 min from NH-44 highway',
       '10 min from airport',
       '2 km from Delhi Public School',
       '4 km from Alexis Hospital',
-      '1 km from Besa market',
+      '1 km from Nagalwadi market',
     ],
     updates: [
-      { date: 'Jan 2026', title: 'Structure complete', desc: 'All villa RCC structures 100% complete. Plastering in progress.' },
+      { date: 'Jan 2026', title: 'Structure complete', desc: 'All RCC structures 100% complete. Plastering in progress.' },
       { date: 'Apr 2026', title: 'Internal finishing', desc: 'Plumbing & electrical rough-in done. Flooring 40% complete.' },
       { date: 'Jul 2026', title: 'Clubhouse nearing completion', desc: 'Clubhouse interior work underway, pool tiling complete.' },
     ],
-    brochureName: 'Hariom-Green-Valley-Brochure.pdf',
+    brochureName: 'Silver-Star-Brochure.pdf',
   },
   {
     id: 'hariom-residency',

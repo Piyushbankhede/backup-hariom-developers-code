@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { MapPin, Maximize, BedDouble, Bath, Heart, GitCompare, ArrowRight, BadgeCheck } from 'lucide-react';
 import { type Property } from '@/data/properties';
@@ -15,8 +15,12 @@ const statusStyles: Record<string, string> = {
 export default function PropertyCard({ property }: { property: Property }) {
   const { isFavorite, toggle } = useFavorites();
   const { isComparing, toggle: toggleCompare } = useCompare();
+  const location = useLocation();
   const fav = isFavorite(property.id);
   const comparing = isComparing(property.id);
+
+  // Pass current page path as `from` so PropertyDetailPage can navigate back correctly
+  const linkState = { from: location.pathname };
 
   return (
     <motion.article
@@ -25,7 +29,7 @@ export default function PropertyCard({ property }: { property: Property }) {
       className="group glass-card overflow-hidden flex flex-col"
     >
       <div className="relative overflow-hidden">
-        <Link to={`/properties/${property.id}`}>
+        <Link to={`/properties/${property.id}`} state={linkState}>
           <img
             src={property.image}
             alt={property.name}
@@ -67,7 +71,7 @@ export default function PropertyCard({ property }: { property: Property }) {
 
       <div className="flex flex-1 flex-col p-5">
         <div className="flex items-start justify-between gap-2">
-          <Link to={`/properties/${property.id}`}>
+          <Link to={`/properties/${property.id}`} state={linkState}>
             <h3 className="font-serif text-lg font-bold text-gray-900 dark:text-white group-hover:text-primary transition">
               {property.name}
             </h3>
@@ -93,6 +97,7 @@ export default function PropertyCard({ property }: { property: Property }) {
 
         <Link
           to={`/properties/${property.id}`}
+          state={linkState}
           className="mt-4 inline-flex items-center justify-center gap-1.5 rounded-full border border-primary/20 py-2.5 text-sm font-semibold text-primary hover:bg-primary hover:text-white transition"
         >
           View Details <ArrowRight className="h-4 w-4" />

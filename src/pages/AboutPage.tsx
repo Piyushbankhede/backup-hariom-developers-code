@@ -14,7 +14,7 @@ export default function AboutPage() {
       <PageHero
         eyebrow="About Us"
         title="Building Trust, Creating Dreams"
-        subtitle="For over 18 years, Hariom Developers has been crafting premium properties in Nagpur with quality, transparency and trust."
+        subtitle="For over years, Hariom Developers has been crafting premium properties in Nagpur with quality, transparency and trust."
         image="https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=1920"
       />
 

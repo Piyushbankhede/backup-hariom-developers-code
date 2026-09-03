@@ -1,18 +1,25 @@
 import { Play, MapPin } from 'lucide-react';
 import SectionHeading from '@/components/SectionHeading';
 import Reveal from '@/components/Reveal';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X } from 'lucide-react';
 
 const tours = [
-  { id: 'vt1', name: 'Hariom Green Valley Villas', location: 'Besa, Nagpur', thumb: 'https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=900' },
+  { id: 'vt1', name: 'Silver Star', location: 'Nagalwadi, Nagpur', thumb: '/silver-star.jpg' },
   { id: 'vt2', name: 'Hariom Residency Apartments', location: 'Manish Nagar', thumb: 'https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg?auto=compress&cs=tinysrgb&w=900' },
   { id: 'vt3', name: 'Hariom Commercial Hub', location: 'Ramdaspeth', thumb: 'https://images.pexels.com/photos/380769/pexels-photo-380769.jpeg?auto=compress&cs=tinysrgb&w=900' },
 ];
 
 export default function VirtualTour() {
   const [active, setActive] = useState<string | null>(null);
+
+  // Close overlay when user navigates away (prevents click-blocking)
+  useEffect(() => {
+    const handleRouteChange = () => setActive(null);
+    window.addEventListener('routechange', handleRouteChange);
+    return () => window.removeEventListener('routechange', handleRouteChange);
+  }, []);
 
   return (
     <section className="section-pad">

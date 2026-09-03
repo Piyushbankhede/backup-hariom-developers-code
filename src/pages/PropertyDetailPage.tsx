@@ -25,6 +25,14 @@ export default function PropertyDetailPage() {
   const [activeImg, setActiveImg] = useState(0);
   const [shared, setShared] = useState(false);
 
+  const handleBack = () => {
+    if (window.history.state && window.history.state.idx > 0) {
+      navigate(-1);
+    } else {
+      navigate('/properties');
+    }
+  };
+
   useEffect(() => {
     if (property) add(property.id);
   }, [property, add]);
@@ -34,7 +42,12 @@ export default function PropertyDetailPage() {
       <div className="min-h-screen grid place-items-center pt-20">
         <div className="text-center">
           <p className="text-gray-500">Property not found.</p>
-          <Link to="/properties" className="btn-ghost mt-4">Back to Properties</Link>
+          <Link
+            to="/"
+            className="btn-ghost mt-4 inline-flex items-center gap-2 cursor-pointer"
+          >
+            <ArrowLeft className="h-4 w-4" /> Back to Home
+          </Link>
         </div>
       </div>
     );
@@ -55,9 +68,15 @@ export default function PropertyDetailPage() {
     <>
       <section className="pt-20 bg-slate-950">
         <div className="container-lux py-6">
-          <Link to="/properties" className="inline-flex items-center gap-1 text-sm text-white/70 hover:text-white">
-            <ArrowLeft className="h-4 w-4" /> Back to Properties
-          </Link>
+          <button
+            type="button"
+            onClick={handleBack}
+            className="inline-flex items-center gap-2 text-sm font-medium text-white/80 hover:text-white transition-colors cursor-pointer group py-1 px-2 -ml-2 rounded-lg hover:bg-white/10"
+            aria-label="Back to Properties"
+          >
+            <ArrowLeft className="h-4 w-4 transition-transform duration-200 group-hover:-translate-x-1" />
+            <span>Back to Properties</span>
+          </button>
         </div>
 
         <div className="container-lux pb-8">

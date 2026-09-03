@@ -21,7 +21,7 @@ const propertyLinks = [
 ];
 
 const projectLinks = [
-  { name: 'Hariom Green Valley', path: '/projects/hariom-green-valley' },
+  { name: 'Silver Star', path: '/projects/silver-star' },
   { name: 'Hariom Residency', path: '/projects/hariom-residency' },
   { name: 'Hariom Commercial Hub', path: '/projects/hariom-commercial-hub' },
   { name: 'Hariom Elite Villas', path: '/projects/hariom-elite-villas' },

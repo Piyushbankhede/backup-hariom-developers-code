@@ -25,7 +25,7 @@ export default function Hero() {
         transition={{ duration: 2, ease: 'easeOut' }}
       >
         <img
-          src="https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=1920"
+          src="/silver-star.jpg"
           alt="Luxury property"
           className="h-full w-full object-cover"
         />
@@ -48,7 +48,7 @@ export default function Hero() {
             <span className="text-accent">{company.name}</span>
           </h1>
           <p className="mt-5 text-lg text-white/85 max-w-xl">
-            Premium Residential, Commercial and Investment Properties — crafted with quality, transparency and trust for over 18 years.
+            Premium Residential, Commercial and Investment Properties — crafted with quality, transparency and trust for over years.
           </p>
           <div className="mt-7 flex flex-wrap gap-3">
             <Link to="/properties" className="btn-accent">
@@ -76,7 +76,7 @@ export default function Hero() {
                 <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-accent" />
                 <select className="input-lux pl-9">
                   <option>Any Location</option>
-                  <option>Besa, Nagpur</option>
+                  <option>Nagalwadi, Nagpur</option>
                   <option>Manish Nagar</option>
                   <option>Wathoda</option>
                   <option>Ramdaspeth</option>

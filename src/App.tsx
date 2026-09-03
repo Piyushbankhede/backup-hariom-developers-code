@@ -1,6 +1,5 @@
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
-import { AnimatePresence, motion } from 'framer-motion';
-import { Suspense, lazy } from 'react';
+import { Suspense, lazy, useEffect } from 'react';
 
 import { EnquiryProvider } from '@/context/EnquiryContext';
 import { FavoritesProvider } from '@/context/FavoritesContext';
@@ -38,35 +37,18 @@ function PageLoader() {
   );
 }
 
-function AnimatedRoutes() {
+/**
+ * Closes any open modals/overlays when the route changes.
+ * This prevents invisible overlay elements from blocking navbar clicks
+ * after navigating away from a page that had an open modal.
+ */
+function ModalCloseOnRouteChange() {
   const location = useLocation();
-  return (
-    <AnimatePresence mode="wait">
-      <motion.div
-        key={location.pathname}
-        initial={{ opacity: 0, y: 8 }}
-        animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: -8 }}
-        transition={{ duration: 0.25, ease: 'easeOut' }}
-      >
-        <Suspense fallback={<PageLoader />}>
-          <Routes location={location}>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/properties" element={<PropertiesPage />} />
-            <Route path="/properties/compare" element={<ComparePage />} />
-            <Route path="/properties/:id" element={<PropertyDetailPage />} />
-            <Route path="/projects" element={<ProjectsPage />} />
-            <Route path="/projects/:id" element={<ProjectDetailPage />} />
-            <Route path="/about" element={<AboutPage />} />
-            <Route path="/faq" element={<FAQPage />} />
-            <Route path="/contact" element={<ContactPage />} />
-            <Route path="/favorites" element={<FavoritesPage />} />
-            <Route path="*" element={<NotFoundPage />} />
-          </Routes>
-        </Suspense>
-      </motion.div>
-    </AnimatePresence>
-  );
+  useEffect(() => {
+    // Dispatch a custom event so any open modal can listen and close itself
+    window.dispatchEvent(new CustomEvent('routechange'));
+  }, [location.pathname]);
+  return null;
 }
 
 export default function App() {
@@ -78,10 +60,25 @@ export default function App() {
             <RecentlyViewedProvider>
               <ScrollToTop />
               <AutoEnquiryTrigger />
+              <ModalCloseOnRouteChange />
               <div className="flex min-h-screen flex-col">
                 <Navbar />
                 <main className="flex-1">
-                  <AnimatedRoutes />
+                  <Suspense fallback={<PageLoader />}>
+                    <Routes>
+                      <Route path="/" element={<HomePage />} />
+                      <Route path="/properties" element={<PropertiesPage />} />
+                      <Route path="/properties/compare" element={<ComparePage />} />
+                      <Route path="/properties/:id" element={<PropertyDetailPage />} />
+                      <Route path="/projects" element={<ProjectsPage />} />
+                      <Route path="/projects/:id" element={<ProjectDetailPage />} />
+                      <Route path="/about" element={<AboutPage />} />
+                      <Route path="/faq" element={<FAQPage />} />
+                      <Route path="/contact" element={<ContactPage />} />
+                      <Route path="/favorites" element={<FavoritesPage />} />
+                      <Route path="*" element={<NotFoundPage />} />
+                    </Routes>
+                  </Suspense>
                 </main>
                 <Footer />
               </div>

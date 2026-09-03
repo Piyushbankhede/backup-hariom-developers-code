@@ -51,39 +51,38 @@ const baseSpecs = [
 
 export const properties: Property[] = [
   {
-    id: 'hariom-green-valley-v1',
-    name: 'Hariom Green Valley Villa',
-    type: 'Villa',
+    id: 'silver-star-v1',
+    name: 'Silver Star',
+    type: 'Residential',
     status: 'For Sale',
     price: 18500000,
     priceLabel: '₹1.85 Cr',
-    location: 'Besa, Nagpur',
+    location: 'Nagalwadi, Nagpur',
     area: '2,400 sq.ft',
     areaSqft: 2400,
     bedrooms: 4,
     bathrooms: 4,
     parking: 2,
     featured: true,
-    image:
-      'https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=900',
+    image: '/silver-star.jpg',
     gallery: [
-      'https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=1200',
+      '/silver-star.jpg',
       'https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=1200',
       'https://images.pexels.com/photos/1080721/pexels-photo-1080721.jpeg?auto=compress&cs=tinysrgb&w=1200',
       'https://images.pexels.com/photos/1438832/pexels-photo-1438832.jpeg?auto=compress&cs=tinysrgb&w=1200',
       'https://images.pexels.com/photos/2462015/pexels-photo-2462015.jpeg?auto=compress&cs=tinysrgb&w=1200',
     ],
     description:
-      'A signature 4 BHK independent villa at Hariom Green Valley, crafted with premium finishes, private garden, and expansive living spaces designed for luxury living.',
+      'A signature 4 BHK independent home at Silver Star, crafted with premium finishes, private garden, and expansive living spaces designed for luxury living.',
     amenities: [...baseAmenities, 'Private Garden', 'Home Theatre Room', 'Solar Water Heating'],
     specifications: baseSpecs,
     nearby: {
       schools: ['Delhi Public School, Besa (2 km)', 'Modern School, Manish Nagar (3 km)'],
       hospitals: ['Alexis Multispeciality Hospital (4 km)', 'Wockhardt Hospital (5 km)'],
-      markets: ['Besa Market (1 km)', 'Manish Nagar Market (2.5 km)'],
+      markets: ['Nagalwadi Market (1 km)', 'Manish Nagar Market (2.5 km)'],
     },
-    mapQuery: 'Besa, Nagpur',
-    brochureName: 'Hariom-Green-Valley-Brochure.pdf',
+    mapQuery: 'Nagalwadi, Nagpur',
+    brochureName: 'Silver-Star-Brochure.pdf',
   },
   {
     id: 'hariom-residency-3bhk',
@@ -300,10 +299,10 @@ export const testimonials = [
   {
     id: 't1',
     name: 'Rohan & Sneha Deshmukh',
-    role: 'Villa Owner, Green Valley',
+    role: 'Homeowner, Silver Star',
     rating: 5,
     image: 'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=200',
-    text: 'From site visit to handover, the team at Hariom Developers was transparent and professional. Our villa is everything we dreamed of and more.',
+    text: 'From site visit to handover, the team at Hariom Developers was transparent and professional. Our home is everything we dreamed of and more.',
   },
   {
     id: 't2',
