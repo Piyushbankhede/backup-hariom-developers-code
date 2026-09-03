@@ -334,7 +334,7 @@ export const testimonials = [
 export const stats = [
   { id: 's1', label: 'Projects Completed', value: 24, suffix: '+' },
   { id: 's2', label: 'Happy Customers', value: 1850, suffix: '+' },
-  { id: 's3', label: 'Years of Experience', value: 18, suffix: '' },
+  { id: 's3', label: 'Found in year', value: 2026, suffix: '' },
   { id: 's4', label: 'Properties Delivered', value: 640, suffix: '+' },
 ];
 
