@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, type ReactNode } from 'react';
+import { createContext, useContext, useState, useCallback, type ReactNode } from 'react';
 
 interface RecentlyViewedState {
   viewed: string[];
@@ -21,7 +21,10 @@ function load(): string[] {
 export function RecentlyViewedProvider({ children }: { children: ReactNode }) {
   const [viewed, setViewed] = useState<string[]>(() => load());
 
-  const add = (id: string) => {
+  // useCallback ensures `add` is stable across renders.
+  // Without this, PropertyDetailPage's useEffect([property, add]) would fire
+  // in an infinite loop, corrupting navigation state after back-navigation.
+  const add = useCallback((id: string) => {
     setViewed((prev) => {
       const next = [id, ...prev.filter((v) => v !== id)].slice(0, 6);
       try {
@@ -31,7 +34,7 @@ export function RecentlyViewedProvider({ children }: { children: ReactNode }) {
       }
       return next;
     });
-  };
+  }, []);
 
   return (
     <RecentlyViewedContext.Provider value={{ viewed, add }}>
@@ -45,3 +48,4 @@ export function useRecentlyViewed() {
   if (!ctx) throw new Error('useRecentlyViewed must be used within RecentlyViewedProvider');
   return ctx;
 }
+

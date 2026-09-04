@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Host
-Host: https://hariomdeveloper.com
+Host: https://hariomdevelopers.in
 
 # Sitemaps
-Sitemap: https://hariomdeveloper.com/sitemap.xml
+Sitemap: https://hariomdevelopers.in/sitemap.xml

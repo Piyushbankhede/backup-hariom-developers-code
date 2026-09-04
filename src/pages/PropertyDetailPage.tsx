@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   MapPin, Maximize, BedDouble, Bath, Car, CheckCircle2, Phone, MessageCircle,
@@ -25,17 +25,26 @@ export default function PropertyDetailPage() {
   const [activeImg, setActiveImg] = useState(0);
   const [shared, setShared] = useState(false);
 
+  const location = useLocation();
+
   const handleBack = () => {
-    if (window.history.state && window.history.state.idx > 0) {
+    // Use the `from` state passed by PropertyCard (same pattern as ProjectDetailPage).
+    // Fall back to navigate(-1) if history exists, or /properties as last resort.
+    const from = (location.state as { from?: string } | null)?.from;
+    if (from) {
+      navigate(from);
+    } else if (window.history.state && window.history.state.idx > 0) {
       navigate(-1);
     } else {
       navigate('/properties');
     }
   };
 
+  // `add` is now stable (useCallback in context) so this effect fires only
+  // when the property changes — never in an infinite loop.
   useEffect(() => {
     if (property) add(property.id);
-  }, [property, add]);
+  }, [property?.id]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Reset active image when navigating between properties
   useEffect(() => {
