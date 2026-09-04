@@ -15,7 +15,7 @@ export default function PageHero({
   children?: ReactNode;
 }) {
   return (
-    <section className="relative flex min-h-[46vh] items-end overflow-hidden pt-20">
+    <section className="relative flex min-h-[36vh] sm:min-h-[44vh] items-end overflow-hidden pt-16 sm:pt-20">
       <motion.div
         className="absolute inset-0"
         initial={{ scale: 1.1 }}
@@ -25,7 +25,7 @@ export default function PageHero({
         <img src={image} alt="" className="h-full w-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/70 to-slate-950/40" />
       </motion.div>
-      <div className="relative container-lux pb-12 pt-10">
+      <div className="relative container-lux pb-8 sm:pb-12 pt-6 sm:pt-10">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
@@ -33,11 +33,17 @@ export default function PageHero({
         >
           {eyebrow && (
             <span className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-widest text-accent">
-              <span className="h-1 w-6 rounded-full bg-accent" /> {eyebrow}
+              <span className="h-1 w-5 sm:w-6 rounded-full bg-accent" /> {eyebrow}
             </span>
           )}
-          <h1 className="mt-3 font-serif text-4xl sm:text-5xl font-bold text-white text-balance">{title}</h1>
-          {subtitle && <p className="mt-3 max-w-2xl text-base text-white/80">{subtitle}</p>}
+          <h1 className="mt-2 sm:mt-3 font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-white text-balance leading-tight">
+            {title}
+          </h1>
+          {subtitle && (
+            <p className="mt-2 sm:mt-3 max-w-2xl text-xs sm:text-sm md:text-base text-white/80 leading-relaxed">
+              {subtitle}
+            </p>
+          )}
           {children}
         </motion.div>
       </div>

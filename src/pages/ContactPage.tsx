@@ -65,28 +65,28 @@ export default function ContactPage() {
       />
 
       <section className="section-pad">
-        <div className="container-lux grid lg:grid-cols-3 gap-6">
+        <div className="container-lux grid grid-cols-1 lg:grid-cols-3 gap-6">
           <Reveal>
-            <div className="glass-card p-6 h-full space-y-5">
+            <div className="glass-card p-5 sm:p-6 h-full space-y-4 sm:space-y-5">
               <div>
                 <h3 className="font-serif text-lg font-bold text-gray-900 dark:text-white">Contact Information</h3>
-                <p className="mt-1 text-sm text-gray-500">{company.hours}</p>
+                <p className="mt-1 text-xs sm:text-sm text-gray-500">{company.hours}</p>
               </div>
-              <ContactRow icon={<MapPin className="h-5 w-5" />} label="Office Address" value={company.addressText} />
-              <ContactRow icon={<Phone className="h-5 w-5" />} label="Phone" value={company.phone} href={telLink} />
-              <ContactRow icon={<MessageCircle className="h-5 w-5" />} label="WhatsApp" value={company.phone} href={whatsappLink('Hi Hariom Developers!')} />
-              <ContactRow icon={<Mail className="h-5 w-5" />} label="Email" value={company.email} href={`mailto:${company.email}`} />
-              <a href={company.mapsLink} target="_blank" rel="noreferrer" className="btn-accent w-full">
+              <ContactRow icon={<MapPin className="h-4 w-4 sm:h-5 sm:w-5" />} label="Office Address" value={company.addressText} />
+              <ContactRow icon={<Phone className="h-4 w-4 sm:h-5 sm:w-5" />} label="Phone" value={company.phone} href={telLink} />
+              <ContactRow icon={<MessageCircle className="h-4 w-4 sm:h-5 sm:w-5" />} label="WhatsApp" value={company.phone} href={whatsappLink('Hi Hariom Developers!')} />
+              <ContactRow icon={<Mail className="h-4 w-4 sm:h-5 sm:w-5" />} label="Email" value={company.email} href={`mailto:${company.email}`} />
+              <a href={company.mapsLink} target="_blank" rel="noreferrer" className="btn-accent w-full min-h-[44px]">
                 <Navigation className="h-4 w-4" /> Get Directions
               </a>
             </div>
           </Reveal>
 
           <Reveal delay={0.1} className="lg:col-span-2">
-            <div className="glass-card p-6">
+            <div className="glass-card p-5 sm:p-6">
               <h3 className="font-serif text-lg font-bold text-gray-900 dark:text-white">Send us a message</h3>
-              <p className="mt-1 text-sm text-gray-500">Fill in the form and our team will get back to you within 24 hours.</p>
-              <form onSubmit={handleSubmit} className="mt-5 space-y-4" noValidate>
+              <p className="mt-1 text-xs sm:text-sm text-gray-500">Fill in the form and our team will get back to you within 24 hours.</p>
+              <form onSubmit={handleSubmit} className="mt-5 space-y-3.5 sm:space-y-4" noValidate>
                 <input
                   type="text"
                   name="website"
@@ -95,7 +95,7 @@ export default function ContactPage() {
                   aria-hidden="true"
                   className="absolute -left-[9999px] h-0 w-0 opacity-0"
                 />
-                <div className="grid sm:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-4">
                   <div>
                     <label className="label-lux">
                       Name <span className="text-red-500">*</span>
@@ -122,7 +122,7 @@ export default function ContactPage() {
                     {errors.phone && <p className="mt-1 text-xs text-red-500">{errors.phone}</p>}
                   </div>
                 </div>
-                <div className="grid sm:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-4">
                   <div>
                     <label className="label-lux">
                       Email <span className="text-red-500">*</span>
@@ -170,7 +170,7 @@ export default function ContactPage() {
                     className="flex items-start gap-2.5 rounded-xl bg-emerald-500/10 border border-emerald-500/20 p-3.5 text-emerald-700 dark:text-emerald-400"
                   >
                     <CheckCircle2 className="h-5 w-5 shrink-0 mt-0.5" />
-                    <span className="text-sm font-medium leading-relaxed">
+                    <span className="text-xs sm:text-sm font-medium leading-relaxed">
                       Thank you! Your enquiry has been sent successfully. Our team will contact you soon.
                     </span>
                   </motion.div>
@@ -183,7 +183,7 @@ export default function ContactPage() {
                     className="flex items-start gap-2.5 rounded-xl bg-red-500/10 border border-red-500/20 p-3.5 text-red-600 dark:text-red-400"
                   >
                     <AlertCircle className="h-5 w-5 shrink-0 mt-0.5" />
-                    <span className="text-sm font-medium leading-relaxed">
+                    <span className="text-xs sm:text-sm font-medium leading-relaxed">
                       Failed to send enquiry. Please try again or call us at {company.phone}.
                     </span>
                   </motion.div>
@@ -192,14 +192,14 @@ export default function ContactPage() {
                 <button
                   type="submit"
                   disabled={status === 'loading'}
-                  className="btn-accent w-full sm:w-auto disabled:opacity-60 disabled:cursor-not-allowed"
+                  className="btn-accent w-full sm:w-auto min-h-[44px] disabled:opacity-60 disabled:cursor-not-allowed"
                 >
                   {status === 'loading' ? (
                     <>
                       <Loader2 className="h-4 w-4 animate-spin" /> Sending…
                     </>
                   ) : (
-                    'Submit'
+                    'Submit Message'
                   )}
                 </button>
               </form>
@@ -208,14 +208,14 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <section className="pb-20">
+      <section className="pb-16 sm:pb-20">
         <div className="container-lux">
           <Reveal>
-            <div className="overflow-hidden rounded-3xl border border-gray-200 dark:border-slate-800 shadow-xl">
+            <div className="overflow-hidden rounded-2xl sm:rounded-3xl border border-gray-200 dark:border-slate-800 shadow-xl">
               <iframe
                 title="Hariom Developers office"
                 src={company.mapsEmbed}
-                className="h-[400px] w-full"
+                className="h-[280px] sm:h-[360px] md:h-[400px] w-full"
                 loading="lazy"
               />
             </div>
@@ -228,13 +228,13 @@ export default function ContactPage() {
 
 function ContactRow({ icon, label, value, href }: { icon: React.ReactNode; label: string; value: string; href?: string }) {
   const content = (
-    <div className="flex gap-3">
-      <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-primary/10 text-primary">{icon}</span>
-      <div>
-        <p className="text-xs text-gray-500">{label}</p>
-        <p className="text-sm font-medium text-gray-900 dark:text-white">{value}</p>
+    <div className="flex gap-3 items-start">
+      <span className="grid h-9 w-9 sm:h-10 sm:w-10 shrink-0 place-items-center rounded-xl bg-primary/10 text-primary">{icon}</span>
+      <div className="min-w-0 flex-1">
+        <p className="text-[11px] sm:text-xs text-gray-500">{label}</p>
+        <p className="text-xs sm:text-sm font-medium text-gray-900 dark:text-white break-words">{value}</p>
       </div>
     </div>
   );
-  return href ? <a href={href} target={href.startsWith('http') ? '_blank' : undefined} rel="noreferrer" className="block hover:opacity-80 transition">{content}</a> : content;
+  return href ? <a href={href} target={href.startsWith('http') ? '_blank' : undefined} rel="noreferrer" className="block hover:opacity-80 transition py-1">{content}</a> : content;
 }

@@ -1,7 +1,7 @@
 import { NavLink, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Moon, Sun, Phone } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useScrolled } from '@/hooks/useScrolled';
 import { useDarkMode } from '@/hooks/useDarkMode';
 import { telLink } from '@/data/company';
@@ -24,6 +24,23 @@ export default function Navbar() {
   const isHome = location.pathname === '/';
   const solid = scrolled || !isHome;
 
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (open) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [open]);
+
+  // Close menu automatically on route change
+  useEffect(() => {
+    setOpen(false);
+  }, [location.pathname]);
+
   return (
     <>
       <motion.header
@@ -35,7 +52,7 @@ export default function Navbar() {
             : 'bg-transparent'
         }`}
       >
-        <nav className="container-lux flex h-16 lg:h-20 items-center justify-between gap-4">
+        <nav className="container-lux flex h-16 lg:h-20 items-center justify-between gap-2 sm:gap-4">
           <BrandLogo dark={dark} solid={solid} />
 
           <div className="hidden lg:flex items-center gap-1">
@@ -75,7 +92,7 @@ export default function Navbar() {
             <button
               onClick={toggle}
               aria-label="Toggle theme"
-              className={`rounded-full p-2 transition ${
+              className={`rounded-full p-2.5 transition min-h-[44px] min-w-[44px] grid place-items-center ${
                 solid ? 'text-gray-600 dark:text-gray-300 hover:bg-black/5 dark:hover:bg-white/10' : 'text-white hover:bg-white/10'
               }`}
             >
@@ -87,7 +104,9 @@ export default function Navbar() {
           </div>
 
           <button
-            className={`lg:hidden rounded-full p-2 ${solid ? 'text-gray-800 dark:text-white' : 'text-white'}`}
+            className={`lg:hidden rounded-full p-2.5 min-h-[44px] min-w-[44px] grid place-items-center shrink-0 transition ${
+              solid ? 'text-gray-800 dark:text-white hover:bg-black/5 dark:hover:bg-white/10' : 'text-white hover:bg-white/10'
+            }`}
             onClick={() => setOpen(true)}
             aria-label="Open menu"
           >
@@ -104,21 +123,28 @@ export default function Navbar() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           >
-            <div className="absolute inset-0 bg-slate-950/60 backdrop-blur-sm" onClick={() => setOpen(false)} />
+            <div
+              className="absolute inset-0 bg-slate-950/60 backdrop-blur-sm"
+              onClick={() => setOpen(false)}
+            />
             <motion.div
-              className="absolute right-0 top-0 h-full w-72 max-w-[80%] bg-white dark:bg-slate-900 shadow-2xl flex flex-col"
+              className="absolute right-0 top-0 h-full w-80 max-w-[85%] bg-white dark:bg-slate-900 shadow-2xl flex flex-col max-h-[100dvh] overflow-y-auto"
               initial={{ x: '100%' }}
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'spring', damping: 26, stiffness: 260 }}
             >
-              <div className="flex items-center justify-between p-4 border-b border-gray-100 dark:border-slate-800">
+              <div className="flex items-center justify-between p-4 border-b border-gray-100 dark:border-slate-800 shrink-0">
                 <BrandLogo dark={dark} solid />
-                <button onClick={() => setOpen(false)} aria-label="Close menu" className="p-2 text-gray-500">
+                <button
+                  onClick={() => setOpen(false)}
+                  aria-label="Close menu"
+                  className="min-h-[44px] min-w-[44px] grid place-items-center rounded-full text-gray-500 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-slate-800 transition"
+                >
                   <X className="h-5 w-5" />
                 </button>
               </div>
-              <div className="flex flex-col p-4 gap-1">
+              <div className="flex flex-col p-4 gap-1.5 flex-1 safe-area-bottom">
                 {links.map((l) => (
                   <NavLink
                     key={l.path}
@@ -126,8 +152,10 @@ export default function Navbar() {
                     end={l.path === '/'}
                     onClick={() => setOpen(false)}
                     className={({ isActive }) =>
-                      `rounded-xl px-4 py-3 text-sm font-medium transition ${
-                        isActive ? 'bg-primary text-white' : 'text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-slate-800'
+                      `flex items-center rounded-xl px-4 py-3 min-h-[44px] text-sm font-medium transition ${
+                        isActive
+                          ? 'bg-primary text-white shadow-sm'
+                          : 'text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-slate-800'
                       }`
                     }
                   >
@@ -136,12 +164,12 @@ export default function Navbar() {
                 ))}
                 <button
                   onClick={toggle}
-                  className="mt-2 flex items-center gap-2 rounded-xl px-4 py-3 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-slate-800"
+                  className="mt-2 flex items-center gap-2.5 rounded-xl px-4 py-3 min-h-[44px] text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-slate-800 transition"
                 >
-                  {dark ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+                  {dark ? <Sun className="h-5 w-5 text-accent" /> : <Moon className="h-5 w-5 text-primary" />}
                   {dark ? 'Light Mode' : 'Dark Mode'}
                 </button>
-                <a href={telLink} className="btn-primary mt-2">
+                <a href={telLink} className="btn-primary mt-3 w-full">
                   <Phone className="h-4 w-4" /> Call Now
                 </a>
               </div>

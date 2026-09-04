@@ -27,23 +27,30 @@ export default function FavoritesPage() {
       <section className="section-pad">
         <div className="container-lux">
           <div className="flex items-center justify-between mb-6">
-            <h2 className="font-serif text-2xl font-bold text-gray-900 dark:text-white flex items-center gap-2">
-              <Heart className="h-6 w-6 text-accent" /> Favorite Properties ({favItems.length})
+            <h2 className="font-serif text-lg sm:text-2xl font-bold text-gray-900 dark:text-white flex items-center gap-2">
+              <Heart className="h-5 w-5 sm:h-6 sm:w-6 text-accent shrink-0" />
+              <span>Favorite Properties ({favItems.length})</span>
             </h2>
             {favItems.length > 0 && (
-              <button onClick={clear} className="text-sm text-gray-500 hover:text-red-500">Clear all</button>
+              <button onClick={clear} className="text-xs sm:text-sm text-gray-500 hover:text-red-500 py-1.5 px-2 rounded-lg hover:bg-red-50 dark:hover:bg-red-950/30 transition">
+                Clear all
+              </button>
             )}
           </div>
 
           {favItems.length === 0 ? (
-            <div className="glass-card p-12 text-center">
-              <Heart className="mx-auto h-14 w-14 text-gray-300" />
-              <p className="mt-3 text-gray-500">No favorites yet. Tap the heart icon on any property to save it here.</p>
-              <Link to="/properties" className="btn-primary mt-5">Browse Properties <ArrowRight className="h-4 w-4" /></Link>
+            <div className="glass-card p-8 sm:p-12 text-center">
+              <Heart className="mx-auto h-12 w-12 sm:h-14 sm:w-14 text-gray-300" />
+              <p className="mt-3 text-xs sm:text-sm text-gray-500 max-w-sm mx-auto">No favorites yet. Tap the heart icon on any property to save it here.</p>
+              <Link to="/properties" className="btn-primary mt-5 inline-flex min-h-[44px]">Browse Properties <ArrowRight className="h-4 w-4" /></Link>
             </div>
           ) : (
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-              {favItems.map((p) => <PropertyCard key={p.id} property={p} />)}
+            <div className="grid gap-5 sm:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+              {favItems.map((p) => (
+                <div key={p.id} className="h-full">
+                  <PropertyCard property={p} />
+                </div>
+              ))}
             </div>
           )}
         </div>
@@ -52,11 +59,16 @@ export default function FavoritesPage() {
       {recentItems.length > 0 && (
         <section className="section-pad !pt-0">
           <div className="container-lux">
-            <h2 className="font-serif text-2xl font-bold text-gray-900 dark:text-white flex items-center gap-2 mb-6">
-              <Clock className="h-6 w-6 text-primary" /> Recently Viewed
+            <h2 className="font-serif text-lg sm:text-2xl font-bold text-gray-900 dark:text-white flex items-center gap-2 mb-6">
+              <Clock className="h-5 w-5 sm:h-6 sm:w-6 text-primary shrink-0" />
+              <span>Recently Viewed</span>
             </h2>
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-              {recentItems.map((p) => <PropertyCard key={p.id} property={p} />)}
+            <div className="grid gap-5 sm:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+              {recentItems.map((p) => (
+                <div key={p.id} className="h-full">
+                  <PropertyCard property={p} />
+                </div>
+              ))}
             </div>
           </div>
         </section>
@@ -65,7 +77,7 @@ export default function FavoritesPage() {
       <section className="section-pad !pt-0">
         <div className="container-lux max-w-3xl">
           <SectionHeading eyebrow="Plan your investment" title="Investment Calculator" subtitle="See how your property investment could grow over time." />
-          <Reveal className="mt-8">
+          <Reveal className="mt-6 sm:mt-8">
             <InvestmentCalculator />
           </Reveal>
         </div>

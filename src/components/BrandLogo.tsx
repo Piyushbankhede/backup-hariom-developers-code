@@ -16,21 +16,25 @@ export default function BrandLogo({ dark = false, solid = true, to = '/' }: Bran
       <img
         src="/logo.jpg"
         alt="Hariom Developers logo"
-        className="h-12 w-12 sm:h-14 sm:w-14 rounded-full object-cover shadow-md ring-1 ring-black/10 bg-white shrink-0"
+        className="h-10 w-10 sm:h-12 sm:w-12 lg:h-14 lg:w-14 rounded-full object-cover shadow-md ring-1 ring-black/10 bg-white shrink-0"
       />
-      <span className="leading-tight">
-        <span className={`block font-serif text-lg font-bold ${color}`}>{company.name}</span>
-        <span className={`block text-[10px] uppercase tracking-widest ${taglineColor}`}>{company.tagline}</span>
+      <span className="leading-tight min-w-0">
+        <span className={`block font-serif text-base sm:text-lg font-bold truncate ${color}`}>
+          {company.name}
+        </span>
+        <span className={`block text-[9px] sm:text-[10px] uppercase tracking-wider sm:tracking-widest truncate ${taglineColor}`}>
+          {company.tagline}
+        </span>
       </span>
     </>
   );
 
   if (!to) {
-    return <span className="flex items-center gap-2.5 shrink-0">{inner}</span>;
+    return <span className="flex items-center gap-2 sm:gap-2.5 shrink min-w-0">{inner}</span>;
   }
 
   return (
-    <Link to={to} className="flex items-center gap-2.5 shrink-0">
+    <Link to={to} className="flex items-center gap-2 sm:gap-2.5 shrink min-w-0">
       {inner}
     </Link>
   );

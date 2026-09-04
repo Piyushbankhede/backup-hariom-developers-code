@@ -1,4 +1,4 @@
-import { useState, type FormEvent } from 'react';
+import { useState, useEffect, type FormEvent } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Phone, CheckCircle2, Loader2, Sparkles } from 'lucide-react';
 import { useEnquiry } from '@/context/EnquiryContext';
@@ -25,6 +25,18 @@ export default function EnquiryPopup() {
   const { open, triggerLabel, closeEnquiry } = useEnquiry();
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [errors, setErrors] = useState<Record<string, string>>({});
+
+  // Lock body scroll when enquiry popup is open
+  useEffect(() => {
+    if (open) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [open]);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -69,7 +81,7 @@ export default function EnquiryPopup() {
     <AnimatePresence>
       {open && (
         <motion.div
-          className="fixed inset-0 z-[120] flex items-center justify-center p-4"
+          className="fixed inset-0 z-[120] flex items-center justify-center p-3 sm:p-4"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -82,30 +94,30 @@ export default function EnquiryPopup() {
             exit={{ opacity: 0 }}
           />
           <motion.div
-            className="relative w-full max-w-lg overflow-hidden rounded-3xl bg-gradient-to-br from-slate-900 via-primary-950 to-slate-900 border border-accent/30 shadow-2xl"
+            className="relative w-full max-w-lg max-h-[92dvh] overflow-y-auto rounded-2xl sm:rounded-3xl bg-gradient-to-br from-slate-900 via-primary-950 to-slate-900 border border-accent/30 shadow-2xl safe-area-bottom"
             initial={{ scale: 0.92, y: 24, opacity: 0 }}
             animate={{ scale: 1, y: 0, opacity: 1 }}
             exit={{ scale: 0.92, y: 24, opacity: 0 }}
             transition={{ type: 'spring', damping: 22, stiffness: 260 }}
           >
-            <div className="absolute -top-20 -right-20 h-48 w-48 rounded-full bg-accent/20 blur-3xl" />
+            <div className="absolute -top-20 -right-20 h-48 w-48 rounded-full bg-accent/20 blur-3xl pointer-events-none" />
             <button
               onClick={closeEnquiry}
               aria-label="Close enquiry"
-              className="absolute right-4 top-4 z-10 rounded-full p-1.5 text-white/70 hover:bg-white/10 hover:text-white transition"
+              className="absolute right-3 top-3 z-10 min-h-[44px] min-w-[44px] grid place-items-center rounded-full text-white/70 hover:bg-white/10 hover:text-white transition"
             >
               <X className="h-5 w-5" />
             </button>
 
-            <div className="relative p-6 sm:p-8">
+            <div className="relative p-5 sm:p-7 md:p-8">
               <div className="mb-1 flex items-center gap-2 text-accent">
                 <Sparkles className="h-4 w-4" />
                 <span className="text-xs font-semibold uppercase tracking-widest">{triggerLabel}</span>
               </div>
-              <h2 className="font-serif text-2xl sm:text-3xl font-bold text-white text-balance">
+              <h2 className="font-serif text-xl sm:text-2xl md:text-3xl font-bold text-white text-balance pr-8">
                 Let&apos;s Find Your Next Address
               </h2>
-              <p className="mt-1 text-sm text-white/70">
+              <p className="mt-1 text-xs sm:text-sm text-white/70">
                 Share your preferences and our team will reach out within 24 hours.
               </p>
 
@@ -115,7 +127,7 @@ export default function EnquiryPopup() {
                     key="success"
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
-                    className="flex flex-col items-center justify-center py-12 text-center"
+                    className="flex flex-col items-center justify-center py-10 sm:py-12 text-center"
                   >
                     <motion.div
                       initial={{ scale: 0 }}
@@ -123,9 +135,9 @@ export default function EnquiryPopup() {
                       transition={{ type: 'spring', damping: 12, delay: 0.1 }}
                       className="mb-4 rounded-full bg-success/20 p-3"
                     >
-                      <CheckCircle2 className="h-12 w-12 text-success" />
+                      <CheckCircle2 className="h-10 w-10 sm:h-12 sm:w-12 text-success" />
                     </motion.div>
-                    <h3 className="font-serif text-xl text-white text-balance">
+                    <h3 className="font-serif text-lg sm:text-xl text-white text-balance">
                       Thank you! Your enquiry has been sent successfully.
                     </h3>
                   </motion.div>
@@ -166,7 +178,7 @@ export default function EnquiryPopup() {
                       <textarea
                         name="message"
                         rows={2}
-                        className="w-full rounded-xl border border-white/15 bg-white/5 px-4 py-2.5 text-sm text-white placeholder-white/40 focus:border-accent focus:ring-2 focus:ring-accent/30 outline-none transition"
+                        className="w-full rounded-xl border border-white/15 bg-white/5 px-4 py-2.5 text-base sm:text-sm text-white placeholder-white/40 focus:border-accent focus:ring-2 focus:ring-accent/30 outline-none transition"
                         placeholder="Tell us what you're looking for…"
                       />
                     </div>
@@ -175,11 +187,11 @@ export default function EnquiryPopup() {
                       <p className="text-sm text-red-400">Unable to send enquiry. Please try again.</p>
                     )}
 
-                    <div className="flex flex-col sm:flex-row gap-3 pt-1">
+                    <div className="flex flex-col sm:flex-row gap-2.5 sm:gap-3 pt-1">
                       <button
                         type="submit"
                         disabled={status === 'loading'}
-                        className="btn-accent flex-1 disabled:opacity-60"
+                        className="btn-accent flex-1 w-full disabled:opacity-60 min-h-[44px]"
                       >
                         {status === 'loading' ? (
                           <>
@@ -189,7 +201,7 @@ export default function EnquiryPopup() {
                           'Submit Enquiry'
                         )}
                       </button>
-                      <a href={telLink} className="btn flex-1 border border-white/20 text-white hover:bg-white/10">
+                      <a href={telLink} className="btn flex-1 w-full border border-white/20 text-white hover:bg-white/10 min-h-[44px]">
                         <Phone className="h-4 w-4" /> Call Now
                       </a>
                     </div>
@@ -199,7 +211,7 @@ export default function EnquiryPopup() {
                         href={whatsappLink('Hi Hariom Developers, I have an enquiry.')}
                         target="_blank"
                         rel="noreferrer"
-                        className="text-accent hover:underline"
+                        className="text-accent hover:underline inline-block py-1"
                       >
                         {company.phone}
                       </a>
@@ -237,7 +249,7 @@ function Field({
         name={name}
         type={type}
         placeholder={placeholder}
-        className="w-full rounded-xl border border-white/15 bg-white/5 px-4 py-2.5 text-sm text-white placeholder-white/40 focus:border-accent focus:ring-2 focus:ring-accent/30 outline-none transition"
+        className="w-full rounded-xl border border-white/15 bg-white/5 px-4 py-2.5 text-base sm:text-sm text-white placeholder-white/40 focus:border-accent focus:ring-2 focus:ring-accent/30 outline-none transition"
       />
       {error && <p className="mt-1 text-xs text-red-400">{error}</p>}
     </div>
@@ -253,7 +265,7 @@ function Select({ label, name, options }: { label: string; name: string; options
       <select
         name={name}
         defaultValue=""
-        className="w-full rounded-xl border border-white/15 bg-white/5 px-4 py-2.5 text-sm text-white focus:border-accent focus:ring-2 focus:ring-accent/30 outline-none transition [&>option]:text-slate-900"
+        className="w-full rounded-xl border border-white/15 bg-white/5 px-4 py-2.5 text-base sm:text-sm text-white focus:border-accent focus:ring-2 focus:ring-accent/30 outline-none transition [&>option]:text-slate-900"
       >
         <option value="" disabled>
           Select…

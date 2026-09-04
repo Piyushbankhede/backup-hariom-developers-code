@@ -86,7 +86,7 @@ export default function App() {
               <CompareDrawer />
               <FloatingActions />
               <MobileBottomBar />
-              <div className="h-14 lg:hidden" aria-hidden />
+              <div className="h-[calc(3.5rem+env(safe-area-inset-bottom))] lg:hidden" aria-hidden />
             </RecentlyViewedProvider>
           </CompareProvider>
         </FavoritesProvider>

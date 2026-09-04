@@ -22,14 +22,14 @@ export default function ProjectsPage() {
 
       <section className="section-pad">
         <div className="container-lux">
-          <div className="flex justify-center mb-10">
-            <div className="flex gap-1 rounded-full bg-gray-100 dark:bg-slate-800 p-1">
+          <div className="flex justify-center mb-8 sm:mb-10">
+            <div className="flex gap-1 rounded-full bg-gray-100 dark:bg-slate-800 p-1 overflow-x-auto scrollbar-hide max-w-full">
               {tabs.map((t) => (
                 <button
                   key={t}
                   onClick={() => setTab(t)}
-                  className={`rounded-full px-5 py-2 text-sm font-medium transition ${
-                    tab === t ? 'bg-primary text-white shadow' : 'text-gray-600 dark:text-gray-300'
+                  className={`rounded-full px-4 sm:px-5 py-2 text-xs sm:text-sm font-medium transition shrink-0 min-h-[40px] ${
+                    tab === t ? 'bg-primary text-white shadow' : 'text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white'
                   }`}
                 >
                   {t}
@@ -45,9 +45,9 @@ export default function ProjectsPage() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0 }}
             >
-              <StaggerGroup className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              <StaggerGroup className="grid gap-5 sm:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
                 {filtered.map((p) => (
-                  <StaggerItem key={p.id}>
+                  <StaggerItem key={p.id} className="h-full">
                     <ProjectCard project={p} />
                   </StaggerItem>
                 ))}

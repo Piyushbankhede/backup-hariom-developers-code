@@ -1,4 +1,9 @@
+# https://www.robotstxt.org/robotstxt.html
 User-agent: *
 Allow: /
 
+# Host
+Host: https://hariomdeveloper.com
+
+# Sitemaps
 Sitemap: https://hariomdeveloper.com/sitemap.xml
