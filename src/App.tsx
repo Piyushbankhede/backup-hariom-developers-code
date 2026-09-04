@@ -59,7 +59,7 @@ export default function App() {
           <CompareProvider>
             <RecentlyViewedProvider>
               <ScrollToTop />
-              <AutoEnquiryTrigger />
+              {/* <AutoEnquiryTrigger /> */}
               <ModalCloseOnRouteChange />
               <div className="flex min-h-screen flex-col">
                 <Navbar />

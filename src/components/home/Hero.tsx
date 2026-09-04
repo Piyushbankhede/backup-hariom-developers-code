@@ -41,7 +41,7 @@ export default function Hero() {
         >
           <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-accent backdrop-blur-md border border-white/10">
             <span className="h-1.5 w-1.5 rounded-full bg-accent animate-pulse" />
-            Nagpur&apos;s Trusted Real Estate Developer
+             The site is under development may contain some dummy data 
           </span>
           <h1 className="mt-5 font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-white text-balance leading-[1.1]">
             Find Your Dream Property with{' '}
