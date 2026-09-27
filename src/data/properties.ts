@@ -34,7 +34,6 @@ const baseAmenities = [
   '24x7 Security',
   'Landscaped Gardens',
   'Power Backup',
-  'Covered Parking',
   'Children\'s Play Area',
 ];
 
@@ -56,7 +55,7 @@ export const properties: Property[] = [
     type: 'Residential',
     status: 'For Sale',
     price: 18500000,
-    priceLabel: '₹1.85 Cr',
+    priceLabel: '',  // ye change kiya // or niche ka change krna h 
     location: 'Nagalwadi, Nagpur',
     area: '2,400 sq.ft',
     areaSqft: 2400,
@@ -70,8 +69,7 @@ export const properties: Property[] = [
       '/silverstar2.jpeg',
       '/silverstart1.jpeg',
     ],
-    description:
-      'A signature 4 BHK independent home at Silver Star, crafted with premium finishes, private garden, and expansive living spaces designed for luxury living.',
+    description:'Silver Star offers a thoughtful mix of modern amenities, green landscapes and peaceful surroundings. With close connectivity to educational hubs, technology parks, industrial zones and key transport routes, it is ideal for both residential comfort and long-term investment.',
     amenities: [...baseAmenities, 'Private Garden', 'Home Theatre Room', 'Solar Water Heating'],
     specifications: baseSpecs,
     nearby: {
