@@ -30,9 +30,8 @@ export const projects: Project[] = [
     image: '/silver-star.jpg',
     gallery: [
       '/silver-star.jpg',
-      'https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=1200',
-      'https://images.pexels.com/photos/1080721/pexels-photo-1080721.jpeg?auto=compress&cs=tinysrgb&w=1200',
-      'https://images.pexels.com/photos/2462015/pexels-photo-2462015.jpeg?auto=compress&cs=tinysrgb&w=1200',
+      '/silverstar2.jpeg',
+      '/silverstart1.jpeg',
     ],
     overview:
       'Silver Star offers a thoughtful mix of modern amenities, green landscapes and peaceful surroundings. With close connectivity to educational hubs, technology parks, industrial zones and key transport routes, it is ideal for both residential comfort and long-term investment.',
@@ -107,6 +106,7 @@ export const projects: Project[] = [
     ],
     brochureName: 'Hariom-Residency-Brochure.pdf',
   },
+
   {
     id: 'hariom-commercial-hub',
     name: 'Hariom Commercial Hub',

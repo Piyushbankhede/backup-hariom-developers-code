@@ -4,7 +4,7 @@ export const leadershipTeam = [
     name: 'Hariom Deshmukh',
     role: 'Founder & Managing Director',
     image: 'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=400',
-    bio: 'With 18+ years in real estate development, Hariom leads the company\'s vision of transparent, quality-driven construction across Nagpur.',
+    bio: 'With  years in real estate development, Hariom leads the company\'s vision of transparent, quality-driven construction across Nagpur.',
   },
   {
     id: 'l2',
@@ -41,8 +41,8 @@ export const timeline = [
 export const achievements = [
   { id: 'a1', title: 'RERA Registered Developer', desc: 'All projects RERA registered for buyer protection.' },
   { id: 'a2', title: 'ISO 9001:2015 Certified', desc: 'Quality management certified for construction processes.' },
-  { id: 'a3', title: '18+ Years of Trust', desc: 'Two decades of delivering quality real estate in Nagpur.' },
-  { id: 'a4', title: '1850+ Happy Families', desc: 'Thousands of customers have chosen Hariom homes.' },
+  { id: 'a3', title: ' Years of Trust', desc: 'Two decades of delivering quality real estate in Nagpur.' },
+  { id: 'a4', title: ' Happy Families', desc: 'Thousands of customers have chosen Hariom homes.' },
 ];
 
 export const coreValues = [

@@ -67,10 +67,8 @@ export const properties: Property[] = [
     image: '/silver-star.jpg',
     gallery: [
       '/silver-star.jpg',
-      'https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=1200',
-      'https://images.pexels.com/photos/1080721/pexels-photo-1080721.jpeg?auto=compress&cs=tinysrgb&w=1200',
-      'https://images.pexels.com/photos/1438832/pexels-photo-1438832.jpeg?auto=compress&cs=tinysrgb&w=1200',
-      'https://images.pexels.com/photos/2462015/pexels-photo-2462015.jpeg?auto=compress&cs=tinysrgb&w=1200',
+      '/silverstar2.jpeg',
+      '/silverstart1.jpeg',
     ],
     description:
       'A signature 4 BHK independent home at Silver Star, crafted with premium finishes, private garden, and expansive living spaces designed for luxury living.',
