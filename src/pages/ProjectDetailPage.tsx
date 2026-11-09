@@ -6,7 +6,7 @@ import {
   CalendarCheck, ArrowLeft, ChevronLeft, ChevronRight, Hammer
 } from 'lucide-react';
 import { projects } from '@/data/projects';
-import { company, telLink, whatsappLink } from '@/data/company';
+import { telLink, whatsappLink } from '@/data/company';
 import { useEnquiry } from '@/context/EnquiryContext';
 import Reveal from '@/components/Reveal';
 

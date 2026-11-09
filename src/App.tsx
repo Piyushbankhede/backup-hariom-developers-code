@@ -12,7 +12,6 @@ import EnquiryPopup from '@/components/EnquiryPopup';
 import FloatingActions, { MobileBottomBar } from '@/components/FloatingActions';
 import CompareDrawer from '@/components/CompareDrawer';
 import ScrollToTop from '@/components/ScrollToTop';
-import AutoEnquiryTrigger from '@/components/AutoEnquiryTrigger';
 
 const HomePage = lazy(() => import('@/pages/HomePage'));
 const PropertiesPage = lazy(() => import('@/pages/PropertiesPage'));

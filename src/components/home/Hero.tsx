@@ -79,7 +79,6 @@ export default function Hero() {
                   <option>Nagalwadi, Nagpur</option>
                   <option>Manish Nagar</option>
                   <option>Wathoda</option>
-                  <option>Ramdaspeth</option>
                   <option>Beltarodi</option>
                 </select>
               </div>
