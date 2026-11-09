@@ -18,7 +18,7 @@ export const company = {
   mapsEmbed:
     'https://www.google.com/maps?q=Panchsheel+Square+Ramdaspeth+Nagpur+440012&output=embed',
   mapsLink:
-    'https://www.google.com/maps/dir/?api=1&destination=Panchsheel+Square+Ramdaspeth+Nagpur+440012',
+    'https://www.google.com/maps/dir/?api=1&destination=Panchsheel+Square+Ramdaspeth+Nagpur+44001',
   social: {
     facebook: 'https://facebook.com',
     instagram: 'https://instagram.com',

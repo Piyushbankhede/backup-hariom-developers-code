@@ -18,7 +18,7 @@ export default function AboutPage() {
         image="https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=1920"
       />
 
-      <section className="section-pad">
+     <section className="section-pad">
         <div className="container-lux grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           <Reveal>
             <img

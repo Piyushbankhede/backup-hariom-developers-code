@@ -8,7 +8,7 @@ import { X } from 'lucide-react';
 const tours = [
   { id: 'vt1', name: 'Silver Star', location: 'Nagalwadi, Nagpur', thumb: '/silver-star.jpg' },
   { id: 'vt2', name: 'Hariom Residency Apartments', location: 'Manish Nagar', thumb: 'https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg?auto=compress&cs=tinysrgb&w=900' },
-  { id: 'vt3', name: 'Hariom Commercial Hub', location: 'Ramdaspeth', thumb: 'https://images.pexels.com/photos/380769/pexels-photo-380769.jpeg?auto=compress&cs=tinysrgb&w=900' },
+  { id: 'vt3', name: 'Hariom Elite Villas', location: 'Wathoda, Nagpur', thumb: 'https://images.pexels.com/photos/1115804/pexels-photo-1115804.jpeg?auto=compress&cs=tinysrgb&w=900' },
 ];
 
 export default function VirtualTour() {

@@ -2,13 +2,13 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, Hammer, CheckCircle2, Rocket } from 'lucide-react';
 import SectionHeading from '@/components/SectionHeading';
 import { StaggerGroup, StaggerItem } from '@/components/Reveal';
-import { projects } from '@/data/projects';
+import { projects, type ProjectStatus } from '@/data/projects';
 
-const tabs = [
-  { key: 'Ongoing', icon: Hammer },
-  { key: 'Completed', icon: CheckCircle2 },
-  { key: 'Upcoming', icon: Rocket },
-] as const;
+const statusIcons: Record<ProjectStatus, React.ComponentType<{ className?: string }>> = {
+  Ongoing: Hammer,
+  Completed: CheckCircle2,
+  Upcoming: Rocket,
+};
 
 export default function FeaturedProjects() {
   return (
@@ -21,12 +21,11 @@ export default function FeaturedProjects() {
         />
 
         <div className="mt-8 sm:mt-12 grid gap-5 sm:gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-          {tabs.map((tab, i) => {
-            const item = projects.find((p) => p.status === tab.key) ?? projects[i];
-            const Icon = tab.icon;
+          {projects.map((item) => {
+            const Icon = statusIcons[item.status] ?? Hammer;
             return (
-              <StaggerItem key={tab.key} className="h-full">
-                <Link to={`/projects/${item.id}`} className="group block glass-card overflow-hidden h-full flex flex-col justify-between">
+              <StaggerItem key={item.id} className="h-full">
+                <Link to={`/projects/${item.id.trim()}`} className="group block glass-card overflow-hidden h-full flex flex-col justify-between">
                   <div>
                     <div className="relative overflow-hidden">
                       <img
@@ -36,7 +35,7 @@ export default function FeaturedProjects() {
                         className="h-48 sm:h-56 w-full object-cover transition-transform duration-700 group-hover:scale-110"
                       />
                       <span className="badge absolute left-3 top-3 bg-white/90 text-primary dark:bg-slate-900/80 dark:text-white">
-                        <Icon className="h-3 w-3" /> {tab.key}
+                        <Icon className="h-3 w-3" /> {item.status}
                       </span>
                     </div>
                     <div className="p-4 sm:p-5 pb-0">

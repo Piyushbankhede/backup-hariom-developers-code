@@ -1,4 +1,4 @@
-export type PropertyStatus = 'For Sale' | 'For Rent' | 'Sold Out' | 'New Launch';
+export type PropertyStatus = 'For Sale' | 'For Rent' | 'Sold Out' | 'New Launch' | 'Ongoing';
 export type PropertyType = 'Residential' | 'Commercial' | 'Villa' | 'Apartment' | 'Plot';
 
 export interface Property {
@@ -6,6 +6,8 @@ export interface Property {
   name: string;
   type: PropertyType;
   status: PropertyStatus;
+  progress?: number;
+  deliveryDate?: string;
   price: number;
   priceLabel: string;
   rent?: number;
@@ -53,12 +55,14 @@ export const properties: Property[] = [
     id: 'silver-star-v1',
     name: 'Silver Star',
     type: 'Residential',
-    status: 'For Sale',
-    price: 18500000,
-    priceLabel: '',  // ye change kiya // or niche ka change krna h 
+    status: 'Ongoing',
+    progress: 65,
+    deliveryDate: 'December 2026',
+    price: 3000000,
+    priceLabel: '₹30 Lakhs onwards',
     location: 'Nagalwadi, Nagpur',
-    area: '2,400 sq.ft',
-    areaSqft: 2400,
+    area: '1,200 - 4,000 sq.ft',
+    areaSqft: 1200,
     bedrooms: 4,
     bathrooms: 4,
     parking: 2,
@@ -69,7 +73,7 @@ export const properties: Property[] = [
       '/silverstar2.jpeg',
       '/silverstart1.jpeg',
     ],
-    description:'Silver Star offers a thoughtful mix of modern amenities, green landscapes and peaceful surroundings. With close connectivity to educational hubs, technology parks, industrial zones and key transport routes, it is ideal for both residential comfort and long-term investment.',
+    description: 'Silver Star offers a thoughtful mix of modern amenities, green landscapes and peaceful surroundings. With close connectivity to educational hubs, technology parks, industrial zones and key transport routes, it is ideal for both residential comfort and long-term investment.',
     amenities: [...baseAmenities, 'Private Garden', 'Home Theatre Room', 'Solar Water Heating'],
     specifications: baseSpecs,
     nearby: {
@@ -151,41 +155,6 @@ export const properties: Property[] = [
     brochureName: 'Hariom-Elite-Villas-Brochure.pdf',
   },
   {
-    id: 'hariom-commercial-hub-office',
-    name: 'Hariom Commercial Hub Office',
-    type: 'Commercial',
-    status: 'For Sale',
-    price: 9500000,
-    priceLabel: '₹95 Lakhs',
-    rent: 55000,
-    rentLabel: '₹55,000/mo',
-    location: 'Ramdaspeth, Nagpur',
-    area: '1,200 sq.ft',
-    areaSqft: 1200,
-    bedrooms: 0,
-    bathrooms: 2,
-    parking: 2,
-    featured: true,
-    image:
-      'https://images.pexels.com/photos/380769/pexels-photo-380769.jpeg?auto=compress&cs=tinysrgb&w=900',
-    gallery: [
-      'https://images.pexels.com/photos/380769/pexels-photo-380769.jpeg?auto=compress&cs=tinysrgb&w=1200',
-      'https://images.pexels.com/photos/259027/pexels-photo-259027.jpeg?auto=compress&cs=tinysrgb&w=1200',
-      'https://images.pexels.com/photos/1170412/pexels-photo-1170412.jpeg?auto=compress&cs=tinysrgb&w=1200',
-    ],
-    description:
-      'Grade-A office space at the heart of Ramdaspeth with premium glass facade, central AC and high-speed elevators — ideal for corporates & startups.',
-    amenities: ['Central Air Conditioning', 'High-Speed Elevators', 'Power Backup', '24x7 Security', 'Ample Parking', 'Conference Rooms', 'Cafeteria'],
-    specifications: ['Glass partition ready', 'Raised flooring for cabling', 'Central HVAC', 'VRV air conditioning', 'Smart access control', 'Fire safety systems'],
-    nearby: {
-      schools: ['Centre Point School (1.5 km)', 'St. Xavier\'s School (2 km)'],
-      hospitals: ['Wockhardt Hospital (1 km)', 'Super Speciality Hospital (2 km)'],
-      markets: ['Sitabuldi Market (1.5 km)', 'Ramdaspeth Market (0.5 km)'],
-    },
-    mapQuery: 'Ramdaspeth, Nagpur',
-    brochureName: 'Hariom-Commercial-Hub-Brochure.pdf',
-  },
-  {
     id: 'hariom-greens-plot-2000',
     name: 'Hariom Greens Plot 2000 sq.ft',
     type: 'Plot',
@@ -198,7 +167,7 @@ export const properties: Property[] = [
     bedrooms: 0,
     bathrooms: 0,
     parking: 0,
-    featured: false,
+    featured: true,
     image:
       'https://images.pexels.com/photos/323776/pexels-photo-323776.jpeg?auto=compress&cs=tinysrgb&w=900',
     gallery: [
@@ -303,10 +272,10 @@ export const testimonials = [
   {
     id: 't2',
     name: 'Saurabh Kunte',
-    role: 'Commercial Hub Owner',
+    role: 'Commercial Property Investor',
     rating: 5,
     image: 'https://images.pexels.com/photos/733872/pexels-photo-733872.jpeg?auto=compress&cs=tinysrgb&w=200',
-    text: 'Investing in a Hariom commercial office was the best decision. Great location, premium build and the appreciation has been excellent.',
+    text: 'Investing in a Hariom commercial property was the best decision. Great location, premium build and the appreciation has been excellent.',
   },
   {
     id: 't3',

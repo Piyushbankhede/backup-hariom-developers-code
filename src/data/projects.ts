@@ -45,31 +45,33 @@ export const projects: Project[] = [
     ],
     amenities: ['Swimming Pool', 'Clubhouse', 'Gym', 'Spa', 'Jogging Track', 'Tennis Court', 'Kids Play Area', 'Amphitheatre', 'EV Charging'],
     floorPlans: [
-      { name: 'Type A — 3 BHK', area: '1,900 sq.ft', image: 'https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=900' },
-      { name: 'Type B — 4 BHK', area: '2,400 sq.ft', image: 'https://images.pexels.com/photos/1080721/pexels-photo-1080721.jpeg?auto=compress&cs=tinysrgb&w=900' },
-      { name: 'Type C — 5 BHK', area: '3,600 sq.ft', image: 'https://images.pexels.com/photos/1438832/pexels-photo-1438832.jpeg?auto=compress&cs=tinysrgb&w=900' },
+      // { name: 'Type A — 3 BHK', area: '1,900 sq.ft', image: 'https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=900' },
+      //{ name: 'Type B — 4 BHK', area: '2,400 sq.ft', image: 'https://images.pexels.com/photos/1080721/pexels-photo-1080721.jpeg?auto=compress&cs=tinysrgb&w=900' },
+      //  { name: 'Type C — 5 BHK', area: '3,600 sq.ft', image: 'https://images.pexels.com/photos/1438832/pexels-photo-1438832.jpeg?auto=compress&cs=tinysrgb&w=900' },
     ],
+
+    // want to do some changes here 
     locationAdvantages: [
-      '5 min from NH-44 highway',
-      '10 min from airport',
-      '2 km from Delhi Public School',
+      '3 KM from Hingna MIDC & Logistics Zone',
+      'A Resort - Like Plotting Project in Hingna',
+      '2 km from nagpur  Public School',
       '4 km from Alexis Hospital',
       '1 km from Nagalwadi market',
     ],
     updates: [
-      { date: 'Jan 2026', title: 'Structure complete', desc: 'All RCC structures 100% complete. Plastering in progress.' },
-      { date: 'Apr 2026', title: 'Internal finishing', desc: 'Plumbing & electrical rough-in done. Flooring 40% complete.' },
-      { date: 'Jul 2026', title: 'Clubhouse nearing completion', desc: 'Clubhouse interior work underway, pool tiling complete.' },
+      // { date: 'Jan 2026', title: 'Structure complete', desc: 'All RCC structures 100% complete. Plastering in progress.' },
+      //{ date: 'Apr 2026', title: 'Internal finishing', desc: 'Plumbing & electrical rough-in done. Flooring 40% complete.' },
+      // { date: 'Jul 2026', title: 'Clubhouse nearing completion', desc: 'Clubhouse interior work underway, pool tiling complete.' },
     ],
     brochureName: 'Silver-Star-Brochure.pdf',
   },
   {
-    id: 'hariom-residency',
-    name: 'Hariom Residency',
+    id: 'Vrindavan Park ',
+    name: 'Vrindavan Park',
     status: 'Ongoing',
-    location: 'Manish Nagar, Nagpur',
+    location: 'Near Samruddhi Circle, Nagpur',
     progress: 82,
-    deliveryDate: 'Sep 2026',
+    deliveryDate: '..',
     image:
       'https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg?auto=compress&cs=tinysrgb&w=900',
     gallery: [
@@ -105,49 +107,6 @@ export const projects: Project[] = [
       { date: 'Aug 2026', title: 'Final handover prep', desc: 'Amenities complete. Approvals in final stage.' },
     ],
     brochureName: 'Hariom-Residency-Brochure.pdf',
-  },
-
-  {
-    id: 'hariom-commercial-hub',
-    name: 'Hariom Commercial Hub',
-    status: 'Completed',
-    location: 'Ramdaspeth, Nagpur',
-    progress: 100,
-    deliveryDate: 'Completed Mar 2025',
-    image:
-      'https://images.pexels.com/photos/380769/pexels-photo-380769.jpeg?auto=compress&cs=tinysrgb&w=900',
-    gallery: [
-      'https://images.pexels.com/photos/380769/pexels-photo-380769.jpeg?auto=compress&cs=tinysrgb&w=1200',
-      'https://images.pexels.com/photos/259027/pexels-photo-259027.jpeg?auto=compress&cs=tinysrgb&w=1200',
-      'https://images.pexels.com/photos/1170412/pexels-photo-1170412.jpeg?auto=compress&cs=tinysrgb&w=1200',
-    ],
-    overview:
-      'A landmark Grade-A office tower in the heart of Ramdaspeth with 60,000 sq.ft of premium commercial space, central AC, and double-height lobby.',
-    highlights: [
-      '60,000 sq.ft commercial space',
-      'Double-height entrance lobby',
-      'Central air-conditioning',
-      'High-speed elevators',
-      'Ample covered parking',
-      '100% leased on completion',
-    ],
-    amenities: ['Central AC', 'High-Speed Elevators', 'Power Backup', '24x7 Security', 'Conference Rooms', 'Cafeteria', 'Smart Access'],
-    floorPlans: [
-      { name: 'Office Suite — 600 sq.ft', area: '600 sq.ft', image: 'https://images.pexels.com/photos/259027/pexels-photo-259027.jpeg?auto=compress&cs=tinysrgb&w=900' },
-      { name: 'Office Suite — 1,200 sq.ft', area: '1,200 sq.ft', image: 'https://images.pexels.com/photos/1170412/pexels-photo-1170412.jpeg?auto=compress&cs=tinysrgb&w=900' },
-    ],
-    locationAdvantages: [
-      'Heart of Ramdaspeth CBD',
-      '1 km from railway station',
-      '1.5 km from Sitabuldi market',
-      'Walk to major banks & offices',
-      '1 km from Wockhardt Hospital',
-    ],
-    updates: [
-      { date: 'Oct 2024', title: 'Completion certificate received', desc: 'Project fully complete and ready for possession.' },
-      { date: 'Mar 2025', title: 'Handover & leasing', desc: '100% of offices leased to corporate clients within 90 days.' },
-    ],
-    brochureName: 'Hariom-Commercial-Hub-Brochure.pdf',
   },
   {
     id: 'hariom-elite-villas',

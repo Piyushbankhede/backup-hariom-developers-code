@@ -9,7 +9,6 @@ const projectOptions = [
   'Silver Star',
   'Hariom Residency',
   'Hariom Elite Villas',
-  'Hariom Commercial Hub',
   'Other',
 ];
 

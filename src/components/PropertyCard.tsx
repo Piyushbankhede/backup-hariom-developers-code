@@ -1,6 +1,6 @@
 import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { MapPin, Maximize, BedDouble, Bath, Heart, GitCompare, ArrowRight, BadgeCheck } from 'lucide-react';
+import { MapPin, Maximize, BedDouble, Bath, Heart, GitCompare, ArrowRight, BadgeCheck, Hammer, CalendarClock } from 'lucide-react';
 import { type Property } from '@/data/properties';
 import { useFavorites } from '@/context/FavoritesContext';
 import { useCompare } from '@/context/CompareContext';
@@ -10,6 +10,7 @@ const statusStyles: Record<string, string> = {
   'For Rent': 'bg-primary/15 text-primary dark:text-primary-300',
   'New Launch': 'bg-accent/20 text-accent-700 dark:text-accent',
   'Sold Out': 'bg-red-100 text-red-600',
+  'Ongoing': 'bg-primary/15 text-primary dark:text-primary-300',
 };
 
 export default function PropertyCard({ property }: { property: Property }) {
@@ -78,7 +79,7 @@ export default function PropertyCard({ property }: { property: Property }) {
               </h3>
             </Link>
             <span className="shrink-0 text-right">
-              <span className="block font-serif text-base sm:text-lg font-bold text-accent">{property.priceLabel}</span>
+              <span className="block font-serif text-base sm:text-lg font-bold text-accent">{property.priceLabel || 'Price on Request'}</span>
               {property.rentLabel && (
                 <span className="block text-[10px] sm:text-[11px] text-gray-500">or {property.rentLabel}</span>
               )}
@@ -95,6 +96,31 @@ export default function PropertyCard({ property }: { property: Property }) {
             {property.bathrooms > 0 && <Spec icon={<Bath className="h-3.5 w-3.5 sm:h-4 sm:w-4 shrink-0" />} label={`${property.bathrooms} Bath`} />}
             {property.bedrooms === 0 && <Spec icon={<Building2Icon />} label={property.type} />}
           </div>
+
+          {property.progress !== undefined && (
+            <div className="mt-3 pt-2.5 border-t border-gray-100 dark:border-slate-800">
+              <div className="flex justify-between text-[11px] font-medium text-gray-600 dark:text-gray-300 mb-1">
+                <span className="flex items-center gap-1"><Hammer className="h-3 w-3 text-accent" /> Project Progress</span>
+                <span className="font-semibold text-primary dark:text-accent">{property.progress}%</span>
+              </div>
+              <div className="h-1.5 w-full overflow-hidden rounded-full bg-gray-200 dark:bg-slate-700">
+                <motion.div
+                  className="h-full rounded-full bg-accent"
+                  initial={{ width: 0 }}
+                  whileInView={{ width: `${property.progress}%` }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 1, ease: 'easeOut' }}
+                />
+              </div>
+            </div>
+          )}
+
+          {property.deliveryDate && (
+            <div className="mt-2 flex items-center gap-1.5 text-[11px] sm:text-xs text-gray-500 dark:text-gray-400">
+              <CalendarClock className="h-3.5 w-3.5 shrink-0 text-accent" />
+              <span>Expected Delivery: <strong className="text-gray-700 dark:text-gray-200 font-medium">{property.deliveryDate}</strong></span>
+            </div>
+          )}
         </div>
       </div>
 

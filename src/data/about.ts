@@ -32,7 +32,7 @@ export const leadershipTeam = [
 export const timeline = [
   { year: '2007', title: 'Hariom Developers founded', desc: 'Started with a single residential plot project in Nagpur.' },
   { year: '2011', title: 'First gated community', desc: 'Delivered our first 48-unit gated residential community.' },
-  { year: '2015', title: 'Expansion into commercial', desc: 'Launched Hariom Commercial Hub in Ramdaspeth CBD.' },
+  { year: '2015', title: 'Expansion into commercial', desc: 'Expanded into premium commercial developments in Nagpur.' },
   { year: '2019', title: '500+ homes delivered', desc: 'Crossed the milestone of 500 happy families.' },
   { year: '2023', title: 'Luxury villa segment', desc: 'Entered ultra-luxury with Hariom Elite Villas.' },
   { year: '2026', title: 'Silver Star underway', desc: 'Our largest community, 84 homes, nearing completion.' },

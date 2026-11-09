@@ -39,7 +39,7 @@ export default function PropertiesPage() {
 
   const filtered = useMemo(() => {
     return properties.filter((p) => {
-      if (listing === 'Buy' && p.status !== 'For Sale' && p.status !== 'New Launch') return false;
+      if (listing === 'Buy' && p.status !== 'For Sale' && p.status !== 'New Launch' && p.status !== 'Ongoing') return false;
       if (listing === 'Rent' && p.status !== 'For Rent') return false;
       if (type !== 'All' && p.type !== type) return false;
       if (p.price < minPrice || p.price > maxPrice) return false;

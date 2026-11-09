@@ -5,7 +5,8 @@ import ProjectCard from '@/components/ProjectCard';
 import { projects, type ProjectStatus } from '@/data/projects';
 import { StaggerGroup, StaggerItem } from '@/components/Reveal';
 
-const tabs: (ProjectStatus | 'All')[] = ['All', 'Ongoing', 'Completed', 'Upcoming'];
+const allTabs: (ProjectStatus | 'All')[] = ['All', 'Ongoing', 'Completed', 'Upcoming'];
+const tabs = allTabs.filter((t) => t === 'All' || projects.some((p) => p.status === t));
 
 export default function ProjectsPage() {
   const [tab, setTab] = useState<(typeof tabs)[number]>('All');

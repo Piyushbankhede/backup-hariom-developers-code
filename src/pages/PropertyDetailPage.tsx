@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import {
   MapPin, Maximize, BedDouble, Bath, Car, CheckCircle2, Phone, MessageCircle,
   Download, CalendarCheck, Share2, Heart, ChevronLeft, ChevronRight, School,
-  Hospital, Store, ArrowLeft
+  Hospital, Store, ArrowLeft, Hammer, CalendarClock
 } from 'lucide-react';
 import { properties } from '@/data/properties';
 import { company, telLink, whatsappLink } from '@/data/company';
@@ -151,9 +151,32 @@ export default function PropertyDetailPage() {
             {shared && <p className="mt-2 text-xs text-success font-medium">Link copied to clipboard!</p>}
 
             <div className="mt-5 sm:mt-6 glass-card p-4 sm:p-5">
-              <p className="text-xs uppercase tracking-wider text-gray-500 font-semibold">Price</p>
-              <p className="font-serif text-2xl sm:text-3xl font-bold text-accent mt-0.5">{property.priceLabel}</p>
-              {property.rentLabel && <p className="text-xs sm:text-sm text-gray-500 mt-0.5">Rent: {property.rentLabel}</p>}
+              <div className="flex flex-wrap items-center justify-between gap-3">
+                <div>
+                  <p className="text-xs uppercase tracking-wider text-gray-500 font-semibold">Price</p>
+                  <p className="font-serif text-2xl sm:text-3xl font-bold text-accent mt-0.5">{property.priceLabel || 'Price on Request'}</p>
+                  {property.rentLabel && <p className="text-xs sm:text-sm text-gray-500 mt-0.5">Rent: {property.rentLabel}</p>}
+                </div>
+                {property.deliveryDate && (
+                  <div className="text-left sm:text-right">
+                    <p className="text-xs uppercase tracking-wider text-gray-500 font-semibold">Expected Delivery</p>
+                    <p className="font-semibold text-sm sm:text-base text-gray-900 dark:text-white mt-0.5 flex items-center gap-1.5 sm:justify-end">
+                      <CalendarClock className="h-4 w-4 text-accent" /> {property.deliveryDate}
+                    </p>
+                  </div>
+                )}
+              </div>
+              {property.progress !== undefined && (
+                <div className="mt-4 pt-3 border-t border-gray-100 dark:border-slate-800">
+                  <div className="flex justify-between text-xs font-medium text-gray-600 dark:text-gray-300 mb-1.5">
+                    <span className="flex items-center gap-1.5"><Hammer className="h-3.5 w-3.5 text-accent" /> Project Progress</span>
+                    <span className="font-bold text-primary dark:text-accent">{property.progress}%</span>
+                  </div>
+                  <div className="h-2 w-full overflow-hidden rounded-full bg-gray-200 dark:bg-slate-700">
+                    <div className="h-full rounded-full bg-accent" style={{ width: `${property.progress}%` }} />
+                  </div>
+                </div>
+              )}
             </div>
 
             <div className="mt-5 sm:mt-6 grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-3">
