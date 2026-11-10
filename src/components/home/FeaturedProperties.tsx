@@ -15,7 +15,7 @@ export default function FeaturedProperties() {
           title="Featured Properties"
           subtitle="A curated selection of our most sought-after premium properties in Nagpur."
         />
-        <StaggerGroup className="mt-8 sm:mt-12 grid gap-5 sm:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
+        <StaggerGroup className={`mt-8 sm:mt-12 grid gap-5 sm:gap-6 grid-cols-1 sm:grid-cols-2 ${featured.length <= 3 ? 'lg:grid-cols-3' : 'lg:grid-cols-4'}`}>
           {featured.map((p) => (
             <StaggerItem key={p.id} className="h-full">
               <PropertyCard property={p} />
